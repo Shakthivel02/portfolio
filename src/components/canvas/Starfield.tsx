@@ -65,6 +65,19 @@ void main() {
 }
 `;
 
+const createLayer = (count: number, spread: number, depth: number) => {
+  const positions = new Float32Array(count * 3);
+  const scales = new Float32Array(count);
+  for (let i = 0; i < count; i++) {
+    // Wider spread so we don't see empty edges when pulling stars
+    positions[i * 3] = (Math.random() - 0.5) * spread * 2;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * spread * 2;
+    positions[i * 3 + 2] = -depth + (Math.random() - 0.5) * 4;
+    scales[i] = Math.random();
+  }
+  return { positions, scales };
+};
+
 export default function Starfield() {
   const nearRef = useRef<THREE.Points>(null);
   const midRef = useRef<THREE.Points>(null);
@@ -86,19 +99,6 @@ export default function Starfield() {
   }, [mouseNDC]);
 
   const layers = useMemo(() => {
-    const createLayer = (count: number, spread: number, depth: number) => {
-      const positions = new Float32Array(count * 3);
-      const scales = new Float32Array(count);
-      for (let i = 0; i < count; i++) {
-        // Wider spread so we don't see empty edges when pulling stars
-        positions[i * 3] = (Math.random() - 0.5) * spread * 2;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * spread * 2;
-        positions[i * 3 + 2] = -depth + (Math.random() - 0.5) * 4;
-        scales[i] = Math.random();
-      }
-      return { positions, scales };
-    };
-
     return {
       near: createLayer(300, 30, 3),   
       mid: createLayer(900, 45, 8),    
@@ -106,7 +106,7 @@ export default function Starfield() {
     };
   }, []);
 
-  const uniforms = useMemo(() => ({
+  const uniformsRef = useRef({
     uTime: { value: 0 },
     uMouse: { value: new THREE.Vector2(0, 0) },
     uScroll: { value: 0 },
@@ -114,7 +114,10 @@ export default function Starfield() {
     uSize: { value: 120.0 },
     uColorBase: { value: new THREE.Color('#e0e5ff') },
     uColorHot: { value: new THREE.Color('#00E5FF') }, // Jedi Blue glow near cursor
-  }), []);
+  });
+
+  // eslint-disable-next-line react-hooks/refs
+  const uniforms = uniformsRef.current;
 
   useFrame((state) => {
     const time = state.clock.elapsedTime;

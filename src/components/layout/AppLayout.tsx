@@ -4,6 +4,7 @@ import SmoothScroll from './SmoothScroll';
 import { theme } from '../../styles/theme';
 import { GlobalStyles } from '../../styles/GlobalStyles';
 import CustomImageCursor from '../ui/CustomImageCursor';
+import Header from './Header';
 
 const MainWrapper = styled.main`
   position: relative;
@@ -21,6 +22,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
     <ThemeProvider theme={theme}>
       <GlobalStyles theme={theme} />
       <CustomImageCursor />
+      <Header />
       <MainWrapper>
         <SmoothScroll>
           {children}
