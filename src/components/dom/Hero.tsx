@@ -85,14 +85,6 @@ const ScrollText = styled.span`
   letter-spacing: 0.2em;
 `;
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.3, delayChildren: 0.5 },
-  },
-};
-
 const titleString = "CREATIVE\nDEVELOPER".split("");
 
 // Adjust animations to work WITH the 3D tilt
