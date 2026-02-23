@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-space-900: #030508;
+  --color-space-800: #0a0f18;
+  --color-star-glow: #ffe0e0;
+  --color-accent: #00E5FF;
+}
+
+:root {
+  background-color: var(--color-space-900);
+  color: white;
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility to ensure the canvas sits behind everything */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Re-enable pointer events for specific 3D interactions if needed within standard flow */
+.canvas-interactive {
+  pointer-events: auto;
+}
