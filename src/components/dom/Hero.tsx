@@ -105,7 +105,7 @@ const titleContainer = {
     scale: 1,
     transition: { 
       duration: 3, /* Slow, dramatic float-in */
-      ease: [0.16, 1, 0.3, 1], // easeOutExpo
+      ease: [0.16, 1, 0.3, 1] as const, // easeOutExpo
       staggerChildren: 0.05 
     },
   },
@@ -116,7 +116,7 @@ const charVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
+    transition: { duration: 0.8, ease: "easeOut" as const },
   },
 };
 

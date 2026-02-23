@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLenis } from 'lenis/react';
 
 interface ScrollProgress {
