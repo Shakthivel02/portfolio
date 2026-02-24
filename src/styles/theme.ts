@@ -7,8 +7,15 @@ export const theme = {
     accent: '#00E5FF', // Jedi Blue (primary CTA)
     accentHover: '#33EEFF',
     sith: '#0055FF', // Deep Blue (secondary accent)
+    imperialRed: '#FF2A2A', // Sith/Imperial Red
+    lightsaberBlue: '#00E5FF',
+    lightsaberGreen: '#2EFA41',
+    lightsaberRed: '#FF2A2A',
+    lightsaberPurple: '#B026FF',
+    starWarsYellow: '#E5B13A',
+    scanline: 'rgba(0, 229, 255, 0.1)',
     dimmed: 'rgba(248, 250, 252, 0.4)',
-    border: 'rgba(248, 250, 252, 0.1)',
+    border: 'rgba(248, 250, 252, 0.2)', // Slightly increased for datapad feel
   },
   animation: {
     spring: {

@@ -1,17 +1,12 @@
+import React, { Suspense } from 'react';
 import type { ReactNode } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import SmoothScroll from './SmoothScroll';
+import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import { GlobalStyles } from '../../styles/GlobalStyles';
-import CustomImageCursor from '../ui/CustomImageCursor';
 import Header from './Header';
+import { MainWrapper } from './AppLayout.styles';
 
-const MainWrapper = styled.main`
-  position: relative;
-  width: 100%;
-  z-index: 10;
-  cursor: none;
-`;
+const CustomImageCursor = React.lazy(() => import('../ui/CustomImageCursor'));
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -21,12 +16,15 @@ export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles theme={theme} />
-      <CustomImageCursor />
+
+      <Suspense fallback={null}>
+        <CustomImageCursor />
+      </Suspense>
+
       <Header />
       <MainWrapper>
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        {/* Note: SmoothScroll wrap logic moved to App.tsx where it's correctly wrapping everything */}
+        {children}
       </MainWrapper>
     </ThemeProvider>
   );

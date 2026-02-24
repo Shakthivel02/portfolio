@@ -1,13 +1,6 @@
-import styled from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
-
-const Value = styled.span`
-  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
-  font-size: ${({ theme }) => theme.typography.sizes.xxl};
-  font-weight: ${({ theme }) => theme.typography.weights.bold};
-  color: ${({ theme }) => theme.colors.primary};
-`;
+import { Value } from './AnimatedCounter.styles';
 
 interface AnimatedCounterProps {
   target: number;

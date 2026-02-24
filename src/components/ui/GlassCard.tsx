@@ -1,24 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
-
-const Card = styled(motion.div)`
-  background: rgba(11, 11, 16, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 2px;
-  padding: ${({ theme }) => theme.spacing[8]};
-  transition: border-color 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.accent};
-    box-shadow: 0 0 30px rgba(255, 42, 42, 0.08),
-                0 8px 32px rgba(0, 0, 0, 0.4);
-    transform: translateY(-4px);
-  }
-`;
+import { Card } from './GlassCard.styles';
 
 interface GlassCardProps {
   children: ReactNode;
@@ -40,7 +21,10 @@ export default function GlassCard({ children, className, onClick }: GlassCardPro
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.5 }}
     >
-      {children}
+      <div className="scanline" />
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        {children}
+      </div>
     </Card>
   );
 }

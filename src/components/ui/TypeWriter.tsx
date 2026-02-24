@@ -1,20 +1,5 @@
-import styled, { keyframes } from 'styled-components';
 import { useState, useEffect } from 'react';
-
-const cursorBlink = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-`;
-
-const Wrapper = styled.span`
-  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
-`;
-
-const Cursor = styled.span`
-  animation: ${cursorBlink} 0.8s infinite;
-  color: ${({ theme }) => theme.colors.accent};
-  margin-left: 2px;
-`;
+import { Wrapper, Cursor } from './TypeWriter.styles';
 
 interface TypeWriterProps {
   text: string;
