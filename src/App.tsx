@@ -31,20 +31,22 @@ function App() {
       <SmoothScroll>
         {/* 3D Canvas Layer - Sits behind everything */}
         <div id="canvas-container">
-          <Scene />
+          <Scene isPlaying={isPlaying} />
         </div>
 
         {/* DOM Content Layer - Smooth scrolled */}
         <AppLayout isPlaying={isPlaying}>
-          <Hero />
+          <div style={{ display: isPlaying ? 'none' : 'block' }}>
+            <Hero />
 
-          {/* Lazy load sections below the fold */}
-          <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>Loading transmission...</div>}>
-            <Projects />
-            <Skills />
-            <About />
-            <Contact />
-          </Suspense>
+            {/* Lazy load sections below the fold */}
+            <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>Loading transmission...</div>}>
+              <Projects />
+              <Skills />
+              <About />
+              <Contact />
+            </Suspense>
+          </div>
         </AppLayout>
       </SmoothScroll>
     </ThemeProvider>

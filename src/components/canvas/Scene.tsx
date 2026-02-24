@@ -15,7 +15,11 @@ import SpaceDebris from './SpaceDebris';
  * -15 to -22 → Skills region (energy orbs)
  * -22 to -30 → Contact region (wormhole portal)
  */
-export default function Scene() {
+interface SceneProps {
+  isPlaying?: boolean;
+}
+
+export default function Scene({ isPlaying }: SceneProps) {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 45 }}
@@ -24,7 +28,7 @@ export default function Scene() {
     >
       <Suspense fallback={null}>
         {/* Scroll-linked camera movement */}
-        <ScrollCamera />
+        {!isPlaying && <ScrollCamera />}
 
         {/* Multi-layer parallax starfield (with gravity warp) */}
         <Starfield />
@@ -35,7 +39,7 @@ export default function Scene() {
         <pointLight position={[0, -10, 2]} intensity={0.3} color="#0055FF" />
 
         {/* Floating space debris — scroll-linked, cursor-repelled */}
-        <SpaceDebris />
+        {!isPlaying && <SpaceDebris />}
 
         <Preload all />
       </Suspense>

@@ -14,11 +14,11 @@ export default function AppLayout({ children, isPlaying }: AppLayoutProps) {
   return (
     <>
       <Suspense fallback={null}>
-        {!isPlaying && <CustomImageCursor />}
+        <CustomImageCursor isPlaying={isPlaying} />
       </Suspense>
 
-      <Header />
-      <MainWrapper>
+      {!isPlaying && <Header />}
+      <MainWrapper style={{ pointerEvents: isPlaying ? 'none' : 'auto' }}>
         {/* Note: SmoothScroll wrap logic moved to App.tsx where it's correctly wrapping everything */}
         {children}
       </MainWrapper>

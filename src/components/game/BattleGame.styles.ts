@@ -6,11 +6,13 @@ export const GameOverlay = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 9999;
-  background-color: #0b0b10;
+  background-color: rgba(11, 11, 16, 0.7); /* translucent dark background */
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: auto; /* Catch all clicks to prevent background interaction */
+  cursor: crosshair; /* Force game cursor style */
 `;
 
 export const GameCanvas = styled.canvas`

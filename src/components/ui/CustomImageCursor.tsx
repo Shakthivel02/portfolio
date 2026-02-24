@@ -9,17 +9,23 @@ interface LaserData {
   y: number;
 }
 
-export default function CustomImageCursor() {
+interface CustomImageCursorProps {
+  isPlaying?: boolean;
+}
+
+export default function CustomImageCursor({ isPlaying }: CustomImageCursorProps) {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
   const [lasers, setLasers] = useState<LaserData[]>([]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      if (isPlaying) return;
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleMouseOver = (e: MouseEvent) => {
+      if (isPlaying) return;
       const target = e.target as HTMLElement;
       const isClickable =
         window.getComputedStyle(target).cursor === 'pointer' ||
@@ -36,11 +42,12 @@ export default function CustomImageCursor() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, []);
+  }, [isPlaying]);
 
   // Shoot laser on click
   useEffect(() => {
     const handleMouseDown = (e: MouseEvent) => {
+      if (isPlaying) return;
       if (e.button === 0) {
         setLasers((prev) => [
           ...prev,
@@ -51,11 +58,13 @@ export default function CustomImageCursor() {
 
     window.addEventListener('mousedown', handleMouseDown);
     return () => window.removeEventListener('mousedown', handleMouseDown);
-  }, []);
+  }, [isPlaying]);
 
   const removeLaser = useCallback((id: number) => {
     setLasers((prev) => prev.filter((laser) => laser.id !== id));
   }, []);
+
+  if (isPlaying) return null;
 
   return (
     <CursorWrapper>
