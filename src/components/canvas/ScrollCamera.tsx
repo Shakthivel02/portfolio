@@ -28,7 +28,6 @@ export default function ScrollCamera() {
     // Smooth cinematic lerp
     // eslint-disable-next-line react-hooks/immutability
     camera.position.y += (targetY.current - camera.position.y) * 0.05;
-    // eslint-disable-next-line react-hooks/immutability
     camera.position.z += (targetZ.current - camera.position.z) * 0.05;
   });
 
