@@ -87,7 +87,7 @@ export const GameOverMenu = styled.div`
   }
 
   p {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.primary};
     font-family: ${({ theme }) => theme.typography.fontFamily.sans};
     font-size: 1.5rem;
     margin-bottom: 2rem;
